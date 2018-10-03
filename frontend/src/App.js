@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {Login, Tetris} from './pages/index';
+import {Login, Tetris} from './components/pages/index';
 
 
 class App extends Component {

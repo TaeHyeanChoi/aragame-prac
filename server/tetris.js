@@ -1,12 +1,21 @@
+// Variables for game
 const W = 300, H = 600;
 const COLS = 10, ROWS = 20;
 const BLOCK_W = W / COLS, BLOCK_H = H / ROWS;
-var board = [];
-var lose;
-var interval;
+let board = [];
+let lose;
+let interval_game;
+let interval_render;
+let interval_timer_game;
+let interval_timer_bonus;
+
+let score = 0;
+
 var current; // current moving shape
 var currentX, currentY; // position of current shape
 var freezed; // is current shape settled on the board?
+var restart = false;
+
 const shapes = [
     [ 1, 1, 1, 1 ],
     [ 1, 1, 1, 0,
@@ -25,14 +34,26 @@ const shapes = [
 const colors = [
     'cyan', 'orange', 'blue', 'yellow', 'red', 'green', 'purple'
 ];
+
+// Variables for DOM control
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+const btnPlay = document.getElementById("playbutton");
+const btnPause = document.getElementById("pausebutton");
+const scoreDiv = document.getElementById('score');
 
-
-
-btnPlay = document.getElementById("playbutton");
 btnPlay.addEventListener("click", function() {
-    playButtonClicked();
+    restart ? restartGame() : playButtonClicked();
+})
+
+btnPause.addEventListener("click", function() {
+    console.log("Pause clicked")
+    if (interval_game !== undefined && interval_render !== undefined) {
+        clearInterval(interval_game);
+        clearInterval(interval_render);
+        restart = true;
+        btnPlay.disabled = false;    
+    }
 })
 
 document.body.onkeydown = function( e ) {
@@ -59,6 +80,7 @@ function drawBlock( x, y ) {
 
 // draws the board and the moving shape
 function render() {
+
     ctx.clearRect( 0, 0, W, H );
 
     ctx.strokeStyle = 'black';
@@ -165,6 +187,8 @@ function rotate( current ) {
 
 // check if any lines are filled and clear them
 function clearLines() {
+
+
     for ( var y = ROWS - 1; y >= 0; --y ) {
         var rowFilled = true;
         for ( var x = 0; x < COLS; ++x ) {
@@ -174,6 +198,14 @@ function clearLines() {
             }
         }
         if ( rowFilled ) {
+            score += 100
+            scoreDiv.innerText = "점수 : "+score
+            
+            /*
+                Later, socket here
+            */
+            
+
             for ( var yy = y; yy > 0; --yy ) {
                 for ( var x = 0; x < COLS; ++x ) {
                     board[ yy ][ x ] = board[ yy - 1 ][ x ];
@@ -183,6 +215,8 @@ function clearLines() {
         }
     }
 }
+
+
 
 function keyPress( key ) {
     switch ( key ) {
@@ -216,6 +250,9 @@ function keyPress( key ) {
     }
 }
 
+
+
+
 // checks if the resulting position of current shape will be feasible
 function valid( offsetX, offsetY, newCurrent ) {
     offsetX = offsetX || 0;
@@ -235,7 +272,7 @@ function valid( offsetX, offsetY, newCurrent ) {
                   || x + offsetX >= COLS ) {
                     if (offsetY == 1 && freezed) {
                         lose = true; // lose if the current shape is settled at the top most row
-                        document.getElementById('playbutton').disabled = false;
+                        endGame()
                     } 
                     return false;
                 }
@@ -245,16 +282,42 @@ function valid( offsetX, offsetY, newCurrent ) {
     return true;
 }
 
+
+
 function playButtonClicked() {
+    restart = false;
     newGame();
     document.getElementById("playbutton").disabled = true;
 }
 
 function newGame() {
-    clearInterval( interval );
-    setInterval( render, 30 );
+    clearInterval( interval_game );
+    interval_render = setInterval( render, 30 );
+    
+    score = 0;
+    scoreDiv.innerText = "점수 : "+score
+
     init();
+    start_timer();
     newShape();
     lose = false;
-    interval = setInterval( tick, 400 );
+    interval_game = setInterval( tick, 400 );
+}
+
+function restartGame() {
+    interval_render = setInterval(render, 30);
+    interval_game = setInterval(tick, 400);
+    btnPlay.disabled = true;
+}
+
+function start_timer() {
+
+}
+
+
+function endGame() {
+    restart = false;
+    clearInterval(interval_render);
+    btnPlay.disabled = false;
+    
 }
