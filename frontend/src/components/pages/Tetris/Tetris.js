@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import "../stylesheet/style.css"
+import "./style.css"
 
 class Tetris extends Component {
 
@@ -10,11 +10,14 @@ class Tetris extends Component {
         document.body.appendChild(script);
     }
 
+    
     render() {
         return (
             <div>
                 <canvas id="canvas" width='300' height='600'></canvas>
-                <button id="playbutton">Play</button>
+                <button className="button" id="playbutton">Play</button>
+                <button className="button" id="pausebutton">Pause</button>
+                <div id="score">점수 : 0</div>
             </div>
         )
         
