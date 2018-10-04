@@ -1,0 +1,42 @@
+.footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .footer-start {
+        display: flex;
+        flex: 1;
+        min-width: 150px;
+        justify-content: center;
+
+        .sparcs {
+            margin-left: 1.25rem;
+            min-width: 150px;
+        }
+
+
+
+
+    }
+
+    .footer-menu {
+        flex: 4;
+        a {
+            text-decoration: none;
+            color: black;
+            margin-right: 1.5rem;
+         }
+ 
+    }
+
+    .footer-end {
+        display: flex;
+        justify-content: flex-end;
+        flex: 3;
+        padding-right: 9rem;
+        
+        div, a {
+            margin-left: 0.5rem;
+        }
+    }
+
+}
