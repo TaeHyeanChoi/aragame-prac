@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import "./new_style.scss"
+import "./style.scss"
 import NavBar from "../../NavBar/";
+
 
 class Tetris extends Component {
 

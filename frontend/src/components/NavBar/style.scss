@@ -15,42 +15,57 @@
 
         padding: 0.5rem, 0.75rem;
         min-height: 3.25rem;
-        vertical-align: middle;
-        width: 150px;
+        min-width: 150px;
+        flex: 1;
         display: flex;
-        flex-shrink: 0;
 
         a {
-            position: relative;
             font-family: 'Raleway', sans-serif;
             color: #43C79E;
-            cursor: pointer;
             text-decoration: none;
             margin-left: 0.75em;
             font-weight: bold;
             padding: 0.5rem 0.75rem;
             display: flex;
+            align-items: center;
         }
     }
 
     .NavBar-menu {
 
+        display: flex;
+        flex: 7;
+
         .NavBar-start {
-            justify-content: flex-start;
-            margin-right: auto;
             min-height: 3.25rem;
             display: flex;
-            flex-shrink: 0;
+            flex: 1;
 
             a {
                 text-decoration: none;
-                padding: 0.5rem 0.75rem;
+                padding: 0.5rem 0rem;
+                padding-right: 1.5rem;
                 color: black;
+                display: flex;
+                align-items: center;
             }
         }
 
         .NavBar-end {
-            
+            min-height: 3.25rem;
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+
+            a {
+                text-decoration: none;
+                padding: 0.5rem 0rem;
+                padding-right: 9rem;
+                color: black;
+                display: flex;
+                align-items: center;
+            }
+
         }
     }
     
