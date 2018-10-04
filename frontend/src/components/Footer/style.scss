@@ -12,10 +12,6 @@
             margin-left: 1.25rem;
             min-width: 150px;
         }
-
-
-
-
     }
 
     .footer-menu {
@@ -25,7 +21,9 @@
             color: black;
             margin-right: 1.5rem;
          }
- 
+         a:hover {
+             text-decoration: underline;
+         }
     }
 
     .footer-end {
@@ -36,6 +34,15 @@
         
         div, a {
             margin-left: 0.5rem;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     }
 

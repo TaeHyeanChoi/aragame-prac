@@ -8,13 +8,13 @@ const Footer = (props) => {
                 <div className="sparcs"><strong>SPARCS</strong></div>
             </div>
             <div className="footer-menu">
-                <a href="/">만든 사람들</a>
-                <a href="/">라이센스</a>
-                <a href="/">규칙</a>
+                <a href="https://sparcs.org">만든 사람들</a>
+                <a href="https://sparcs.org">라이센스</a>
+                <a href="https://sparcs.org">규칙</a>
             </div>
             <div className="footer-end">
                 <div>문의: </div>
-                <a>aragame@sparcs.kaist.ac.kr</a>
+                <a href="mailto:aragame@sparcs.kaist.ac.kr">aragame@sparcs.kaist.ac.kr</a>
             </div>
         </div>
     )
