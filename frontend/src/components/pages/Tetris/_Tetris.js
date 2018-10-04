@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import "./new_style.scss"
+import "./style.css"
 import NavBar from "../../NavBar/";
 
 class Tetris extends Component {
@@ -14,12 +14,12 @@ class Tetris extends Component {
     
     render() {
         return (
-            <div className="all-contents">
-                <div className="header"><NavBar/></div>
-                <div className="side1"></div>
-                <div className="main"></div>
-                <div className="side2"></div>
-                <div className="footer"></div>
+            <div>
+                <NavBar />
+                <canvas id="canvas" width='300' height='600'></canvas>
+                <button className="button" id="playbutton">Play</button>
+                <button className="button" id="pausebutton">Pause</button>
+                <div id="score">점수 : 0</div>
             </div>
         )
         

@@ -1,0 +1,58 @@
+.NavBar-wrapper {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    box-sizing: inherit;
+
+
+    // Aragame setting copy
+    border-top: 5px solid #43C79E;
+    width: 100%;
+    margin-bottom: 1.5rem;
+
+
+    .NavBar-logo {
+
+        padding: 0.5rem, 0.75rem;
+        min-height: 3.25rem;
+        vertical-align: middle;
+        width: 150px;
+        display: flex;
+        flex-shrink: 0;
+
+        a {
+            position: relative;
+            font-family: 'Raleway', sans-serif;
+            color: #43C79E;
+            cursor: pointer;
+            text-decoration: none;
+            margin-left: 0.75em;
+            font-weight: bold;
+            padding: 0.5rem 0.75rem;
+            display: flex;
+        }
+    }
+
+    .NavBar-menu {
+
+        .NavBar-start {
+            justify-content: flex-start;
+            margin-right: auto;
+            min-height: 3.25rem;
+            display: flex;
+            flex-shrink: 0;
+
+            a {
+                text-decoration: none;
+                padding: 0.5rem 0.75rem;
+                color: black;
+            }
+        }
+
+        .NavBar-end {
+            
+        }
+    }
+    
+
+}
