@@ -3,9 +3,6 @@ import NavBar from "./presenter";
 
 class Container extends Component {
 
-
-
-
     render() {
         return (
             <NavBar

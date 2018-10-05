@@ -32,7 +32,7 @@ const shapes = [
       1, 1, 1 ]
 ];
 const colors = [
-    'cyan', 'orange', 'blue', 'yellow', 'red', 'green', 'purple'
+    '#43C79E', '#ED9A3A', '#31E0EF', '#F2EA30', '#ED3A3A', '#33E247', '#B9248B'
 ];
 
 // Variables for DOM control

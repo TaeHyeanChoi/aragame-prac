@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.scss";
 import Ionicons from "react-ionicons"
+import {Link} from "react-router-dom"
 
 const NavBar = (props) => {
     return (
@@ -15,6 +16,7 @@ const NavBar = (props) => {
                 </div>
                 <div className="NavBar-end">
                     <a href="/"><Ionicons icon="md-person-add" fontSize="24px"/></a>
+                    <Link to="/login">로그인</Link>
                 </div>
             </div>
         </div>

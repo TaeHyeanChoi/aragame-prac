@@ -1,25 +1,63 @@
-canvas {
-    display: block;
-    margin: auto;
-    border: 1px solid black;
-}
+.main-wrapper {
+    display: grid;
+    grid-template-columns: 302px repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "tetris score rank1"
+                         "tetris buttons rank2";              
+    canvas {
 
-.button {
-    width: 120px;
-    height: 50px;
-    display: block;
-    margin: auto;
-    margin-top: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 30px;
-    font-weight: bold;
-    background-color: white;
-    cursor: pointer;
-}
+        grid-area: tetris;
+        border: 1px solid rgba(#000000, 0.1);
+        background-color: #FAFAFA;
+    }
 
-#score {
-    width: 100px;
-    margin-left: calc(50% - 50px);
-    align-content: center;
-    text-align: center;
+    .score-wrapper {
+        justify-content: center;
+        align-items: center;   
+    }
+
+    .game-wrapper {
+        grid-area: buttons;
+
+        .button {
+            display: block;
+            margin: auto;
+            width: 100px;
+            border: 0;
+            background: none;
+            height: 30px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: black;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            color: #43C79E;
+        }
+    }
+
+    .week-rank-wrapper {
+        grid-area: rank1;
+    }
+
+    .total-rank-wrapper {
+        grid-area: rank2;
+    }
+
+    .title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .content {
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    
 }
