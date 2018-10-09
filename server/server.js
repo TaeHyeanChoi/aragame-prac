@@ -27,6 +27,23 @@ app.get('/', (req, res) => {
 })
 
 
+// DB connection
+const db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', () => {
+    console.log('Connected to MongoDB server');
+});
+mongoose.connect(config.mongodUri);
+
+
+
+// configure api router
+app.use('/api', require('./api'))
+
+
+
+
+/* For frontend scripts */
 app.get('/tetris.js', (req, res) => {
     fs.readFile('./tetris.js', (err, data) => {
         res.write(data);

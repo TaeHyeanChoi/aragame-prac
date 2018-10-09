@@ -1,33 +1,21 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const bcrypt = require('bcryptjs');
 
-const User = new Schema({
+const userSchema = mongoose.Schema({
     username: String,
     password: String,
     bestscore: Number,
     numberofplays: Number
 })
 
-// Create new User
-User.statics.create = function(username, password) {
-    const user = new this({
-        username,
-        password
-    })
-    return user.save()
+userSchema.methods.generateHash = (password) => {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 }
 
-// Find one user by using username
-User.statics.findOneByUsername = function(username) {
-    return this.findOne({
-        username
-    }).exec()
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password)
 }
 
-// Verify the password of the User
-User.methods.verify = function (password) {
-    return this.password === password
-}
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('User', userSchema);
 
