@@ -8,6 +8,14 @@ const mongoose = require('mongoose');
 /* local modules */
 const config = require('./config');
 
+// DB connection
+const db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', () => {
+    console.log('Connected to MongoDB server');
+});
+mongoose.connect(config.mongodUri);
+
 /* express object */
 const app = express();
 
@@ -25,17 +33,6 @@ app.set('jwt-secret', config.secret)
 app.get('/', (req, res) => {
     res.send("Hello JWT")
 })
-
-
-// DB connection
-const db = mongoose.connection;
-db.on('error', console.error);
-db.once('open', () => {
-    console.log('Connected to MongoDB server');
-});
-mongoose.connect(config.mongodUri);
-
-
 
 // configure api router
 app.use('/api', require('./api'))
