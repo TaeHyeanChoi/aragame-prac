@@ -10,6 +10,11 @@ let interval_timer_game;
 let interval_timer_bonus;
 
 let score = 0;
+let totalTime = 100;
+let level = 0;
+let how_may_lines = 0;
+let time=5;
+
 
 var current; // current moving shape
 var currentX, currentY; // position of current shape
@@ -187,7 +192,7 @@ function rotate( current ) {
 
 // check if any lines are filled and clear them
 function clearLines() {
-
+    let lines = 0;
 
     for ( var y = ROWS - 1; y >= 0; --y ) {
         var rowFilled = true;
@@ -197,8 +202,22 @@ function clearLines() {
                 break;
             }
         }
+
         if ( rowFilled ) {
-            score += 100
+            if (lines == 0) {
+                score += 100
+                lines += 1
+            } else if (lines == 1 || lines==2) {
+                score += 200
+                lines += 1
+            } else if (lines == 3) {
+                score += 500
+            }
+
+            
+            how_may_lines += 1;
+            level = int(how_may_lines/5);
+            
             scoreDiv.innerText = "점수 : "+score
             
             /*
@@ -216,6 +235,25 @@ function clearLines() {
     }
 }
 
+// scoring
+function dropping() {
+    if(softDrop){
+        score += 1 * distance;
+    }else if(hardDrop){
+        score += 2 * distance;
+    }
+}
+function comboTime() {
+
+	if (time > 0 && time <= 5) {
+		var ss = time%60;
+        var mm = parseInt(time/60);
+        score += 500;
+        time -= 1;
+	} else if(time==0){
+		time=5;
+	}
+}
 
 
 function keyPress( key ) {
@@ -291,6 +329,7 @@ function playButtonClicked() {
 }
 
 function newGame() {
+
     clearInterval( interval_game );
     interval_render = setInterval( render, 30 );
     
@@ -301,7 +340,7 @@ function newGame() {
     start_timer();
     newShape();
     lose = false;
-    interval_game = setInterval( tick, 400 );
+    interval_game = setInterval( tick, 50 );
 }
 
 function restartGame() {
@@ -310,8 +349,13 @@ function restartGame() {
     btnPlay.disabled = true;
 }
 
-function start_timer() {
-
+function start_timer() { // to limit time 100sec
+    if(totalTime > 0 && totalTime <= 100) {
+		var ss = time%60;
+        var mm = parseInt(time/60);
+        time -= 1;
+    }else if(totalTime == 0)
+        endGame();    
 }
 
 
