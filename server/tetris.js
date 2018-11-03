@@ -13,7 +13,7 @@ let score = 0;
 let totalTime = 100;
 let level = 0;
 let how_may_lines = 0;
-let time=5;
+let time_limit=60;
 
 
 var current; // current moving shape
@@ -46,6 +46,8 @@ var ctx = canvas.getContext('2d');
 const btnPlay = document.getElementById("playbutton");
 const btnPause = document.getElementById("pausebutton");
 const scoreDiv = document.getElementById('score');
+const linesDiv = document.getElementById('scorelines');
+const timeDiv = document.getElementById('limittime');
 
 btnPlay.addEventListener("click", function() {
     restart ? restartGame() : playButtonClicked();
@@ -204,22 +206,23 @@ function clearLines() {
         }
 
         if ( rowFilled ) {
-            if (lines == 0) {
+            
+            if (lines === 0) {
                 score += 100
                 lines += 1
-            } else if (lines == 1 || lines==2) {
+            } else if (lines === 1 || lines === 2) {
                 score += 200
                 lines += 1
-            } else if (lines == 3) {
+            } else if (lines === 3) {
                 score += 500
             }
 
             
             how_may_lines += 1;
-            level = int(how_may_lines/5);
+            level = parseInt(how_may_lines/5);
             
             scoreDiv.innerText = "점수 : "+score
-            
+            linesDiv.innerText = "클리어라인 : "+how_may_lines;
             /*
                 Later, socket here
             */
@@ -280,6 +283,10 @@ function keyPress( key ) {
             }
             break;
         case 'drop':
+            if(!lose) {
+                score += Math.abs(currentY-20) * 2;
+                scoreDiv.innerText = "점수 : "+score    
+            }
             while( valid(0, 1) ) {
                 ++currentY;
             }
@@ -334,13 +341,14 @@ function newGame() {
     interval_render = setInterval( render, 30 );
     
     score = 0;
-    scoreDiv.innerText = "점수 : "+score
+    scoreDiv.innerText = "점수 : "+score;
 
     init();
-    start_timer();
     newShape();
+    
+    interval_timer_game = setInterval(timer, 100);
     lose = false;
-    interval_game = setInterval( tick, 50 );
+    interval_game = setInterval( tick, 500 - level*50 );
 }
 
 function restartGame() {
@@ -349,18 +357,20 @@ function restartGame() {
     btnPlay.disabled = true;
 }
 
-function start_timer() { // to limit time 100sec
-    if(totalTime > 0 && totalTime <= 100) {
-		var ss = time%60;
-        var mm = parseInt(time/60);
-        time -= 1;
-    }else if(totalTime == 0)
-        endGame();    
+function timer() {
+    time_limit -= 1
+    timeDiv.innerHTML = "남은 시간 : "+time_limit;
+
+    if (time_limit == 0) {
+        lose = true;
+        endGame()
+    }
 }
 
 
 function endGame() {
     restart = false;
+    clearInterval(interval_timer_game);
     clearInterval(interval_render);
     btnPlay.disabled = false;
     

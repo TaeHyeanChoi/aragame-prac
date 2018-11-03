@@ -15,6 +15,8 @@ const TetrisMain = (props) => {
                 <div className="title">내 점수</div>
                 <div className="content" id="score">점수 : 0</div>
                 <div className="content" id="high-score">최고점수 : 0</div>
+                <div className="content" id="scorelines">클리어 라인 : 0</div>
+                <div className="content" id="limittime">남은 시간 : 60</div>
             </div>
 
             <div className="week-rank-wrapper">
