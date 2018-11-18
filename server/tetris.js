@@ -346,7 +346,7 @@ function newGame() {
     init();
     newShape();
     
-    interval_timer_game = setInterval(timer, 100);
+    interval_timer_game = setInterval(timer, 1000);
     lose = false;
     interval_game = setInterval( tick, 500 - level*50 );
 }
@@ -369,6 +369,7 @@ function timer() {
 
 
 function endGame() {
+    time_limit = 60;
     restart = false;
     clearInterval(interval_timer_game);
     clearInterval(interval_render);

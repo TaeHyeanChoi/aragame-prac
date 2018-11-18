@@ -8,7 +8,7 @@ class Tetris extends Component {
 
     componentDidMount() {
         const script = document.createElement("script");
-        script.src = "http://143.248.234.13:9000/tetris.js"
+        script.src = "http://localhost:9000/tetris.js"
         script.async = true;
         document.body.appendChild(script);
     }

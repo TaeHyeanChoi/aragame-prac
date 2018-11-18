@@ -17,7 +17,7 @@ exports.signup = (req, res) => {
 
         // If there is same username
         if (user) {
-            return res.redirect("http://143.248.234.13:3000/login?succeed1=fail")
+            return res.redirect("http://localhost:3000/login?succeed1=fail")
         }
         const newUser = new User();
         newUser.username = username;
@@ -29,7 +29,7 @@ exports.signup = (req, res) => {
         // save it
         newUser.save((err) => {
             if (err) throw err;
-            res.redirect("http://143.248.234.13:3000/login?succeed1=succeed")
+            res.redirect("http://localhost:3000/login?succeed1=succeed")
         })
     })
 }
@@ -43,7 +43,7 @@ exports.login = (req, res) => {
         if (err) throw err;
 
         if (!user) {
-            return res.redirect("http://143.248.234.13:3000/login?succeed2=fail")
+            return res.redirect("http://localhost:3000/login?succeed2=fail")
         }
 
         if (user.validPassword(password)) {
@@ -57,11 +57,9 @@ exports.login = (req, res) => {
                 subject: 'userInfo'
             }, (err, token) => {
                 if (err) throw err;
-                res.redirect("http://143.248.234.13:3000/login?succeed2=succeed&token="+token)
+                res.redirect("http://localhost:3000/?token="+token)
             })
         }
-
-
     })
 }
 

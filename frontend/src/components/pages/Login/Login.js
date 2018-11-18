@@ -11,7 +11,7 @@ class Login extends Component {
             <div>
                 <h1>Signup</h1>
                 
-                <form action="http://143.248.234.13:9000/api/auth/signup" method="POST">
+                <form action="http://localhost:9000/api/auth/signup" method="POST">
                     <input type="text" name="username" />
                     <input type="password" name="password" />
                     <button type="submit">회원가입</button>
@@ -19,7 +19,7 @@ class Login extends Component {
 
                 <h1>Login</h1>
 
-                <form action="http://143.248.234.13:9000/api/auth/login" method="POST">
+                <form action="http://localhost:9000/api/auth/login" method="POST">
                     <input type="text" name="username" />
                     <input type="password" name="password" />
                     <button type="submit">로그인</button>
