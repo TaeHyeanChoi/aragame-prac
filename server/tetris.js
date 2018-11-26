@@ -248,14 +248,14 @@ function dropping() {
 }
 function comboTime() {
 
-	if (time > 0 && time <= 5) {
-		var ss = time%60;
+   if (time > 0 && time <= 5) {
+      var ss = time%60;
         var mm = parseInt(time/60);
         score += 500;
         time -= 1;
-	} else if(time==0){
-		time=5;
-	}
+   } else if(time==0){
+      time=5;
+   }
 }
 
 
@@ -374,5 +374,4 @@ function endGame() {
     clearInterval(interval_timer_game);
     clearInterval(interval_render);
     btnPlay.disabled = false;
-    
 }

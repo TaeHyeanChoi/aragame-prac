@@ -2,6 +2,7 @@ import React from "react";
 import "./style.scss";
 
 const TetrisMain = (props) => {
+
     return (
         <div className="main-wrapper">
             <canvas id="canvas" width='300' height='600'></canvas>
@@ -21,20 +22,20 @@ const TetrisMain = (props) => {
 
             <div className="week-rank-wrapper">
                 <div className="title">주간 랭킹</div>
-                <div className="content">1등 : 0000점 (abcdfef)</div>
-                <div className="content">2등 : 0000점 (abcdfef)</div>
-                <div className="content">3등 : 0000점 (abcdfef)</div>
-                <div className="content">4등 : 0000점 (abcdfef)</div>
-                <div className="content">5등 : 0000점 (abcdfef)</div>
+                <div id="week_1"></div>
+                <div id="week_2"></div>
+                <div id="week_3"></div>
+                <div id="week_4"></div>
+                <div id="week_5"></div>
             </div>
 
             <div className="total-rank-wrapper">
                 <div className="title">전체 랭킹</div>
-                <div className="content">1등 : 0000점 (abcdfef)</div>
-                <div className="content">2등 : 0000점 (abcdfef)</div>
-                <div className="content">3등 : 0000점 (abcdfef)</div>
-                <div className="content">4등 : 0000점 (abcdfef)</div>
-                <div className="content">5등 : 0000점 (abcdfef)</div>
+                <div id="total_1"></div>
+                <div id="total_2"></div>
+                <div id="total_3"></div>
+                <div id="total_4"></div>
+                <div id="total_5"></div>
                 
             </div>
             

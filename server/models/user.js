@@ -5,7 +5,8 @@ const userSchema = mongoose.Schema({
     username: String,
     password: String,
     bestscore: Number,
-    numberofplays: Number
+    numberofplays: Number,
+    dateofbestscore: Date
 })
 
 userSchema.methods.generateHash = (password) => {
